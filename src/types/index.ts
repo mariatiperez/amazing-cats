@@ -1,3 +1,24 @@
+import { ChangeEventHandler, MouseEventHandler } from "react";
+
+// Component Props
+
+export interface InputProps {
+  id: string;
+  label: string;
+  placeholder?: string;
+  type?: string;
+  value?: string;
+  onChange: (value: string) => void;
+}
+
+export interface IconButtonProps {
+  name: string;
+  className?: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+// Data interfaces
+
 export interface Weight {
   imperial: string;
   metric: string;
