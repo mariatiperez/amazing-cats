@@ -1,6 +1,12 @@
-import Head from "next/head";
-import { getBreeds } from "@/api";
+// Components
+import SEO from "@/components/SEO";
+import TopNav from "@/components/TopNav";
 import BreedCard from "@/components/BreedCard";
+
+// Functions
+import { getBreeds } from "@/api";
+
+// Types
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Breed } from "@/types";
 
@@ -15,15 +21,13 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <Head>
-        <title>Amazing Cats</title>
-        <meta name="description" content="Catalog of cat breeds" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/pawprint.png" title="cat icon" />
-      </Head>
-      <main>
-        <h1 className="text-primary font-bold"> List of Breeds </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-8 lg:gap-y-12 justify-items-center mx-2">
+      <SEO />
+      <TopNav />
+      <main className="mx-10 mt-20">
+        <h1 className="text-green-700 font-bold text-3xl mb-6">
+          List of Breeds
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center">
           {breeds.map((breed) => (
             <BreedCard
               key={breed.id}
