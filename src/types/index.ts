@@ -35,6 +35,7 @@ export interface Breed {
   id: string;
   name: string;
   image: BreedImage;
+  priority?: boolean;
   description?: string;
   life_span?: string;
   origin?: string;
