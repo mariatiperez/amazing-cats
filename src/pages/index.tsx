@@ -44,8 +44,10 @@ export default function Home({
       <SEO />
       <TopNav />
       <main className="mx-10 my-20">
-        <div className="flex flex-row justify-between mb-6">
-          <h1 className="text-green-700 font-bold text-3xl">List of Breeds</h1>
+        <div className="flex flex-col md:flex-row justify-between">
+          <h1 className="text-green-700 font-bold text-3xl mb-6">
+            List of Breeds
+          </h1>
           <Input
             id="search"
             label="Search by name"

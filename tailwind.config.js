@@ -8,9 +8,6 @@ module.exports = {
         secondary: "#00ff86",
       },
     },
-    fontFamily: {
-      Poppins: ["Open+sans, sans-serif"],
-    },
     screens: {
       xs: "360px",
       sm: "640px",
