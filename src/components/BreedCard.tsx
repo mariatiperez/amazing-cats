@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Breed } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function BreedCard({
   name,
@@ -11,9 +11,25 @@ export default function BreedCard({
   priority = false,
 }: Breed) {
   const [isLoading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+
+  const ref = useRef(null as HTMLDivElement | null);
+  const loaded = useRef(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!expanded && !ref?.current?.contains(event.target as Node)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
   return (
-    <div className="w-full rounded overflow-hidden shadow h-[400px] relative select-none">
+    <div className="w-full rounded overflow-hidden shadow drop-shadow h-[400px] relative select-none">
       <Link
         href="#!"
         className="h-72 block relative w-full z-0"
@@ -26,25 +42,38 @@ export default function BreedCard({
           className={clsx(
             "object-cover",
             "duration-700 ease-in-out",
-            isLoading
+            isLoading && !loaded
               ? "grayscale blur-2xl scale-110"
               : "grayscale-0 blur-0 scale-100"
           )}
-          onLoadingComplete={() => setLoading(false)}
+          onLoadingComplete={() => {
+            if (!loaded) setLoading(false);
+            loaded.current = true;
+          }}
           priority={priority}
           fill
         />
       </Link>
       <div
+        ref={ref}
         className={clsx({
-          "p-4 bg-white absolute bottom-0 group h-36 max-h-36": true,
-          "hover:h-fit hover:max-h-full transition-[max-height] ease-in-out duration-300":
+          "p-4 bg-white absolute bottom-0 h-36 min-h-[9rem] max-h-36 group":
+            true,
+          "transition-[max-height] ease-in-out duration-300 hover:h-fit hover:max-h-full":
             description,
+          "h-fit max-h-full": expanded && description,
         })}
+        onClick={() => setExpanded(!expanded)}
       >
-        <h3 className="font-bold text-base mb-2">{name}</h3>
+        <h3 className="font-bold text-base">{name}</h3>
         {description && (
-          <p className="text-neutral-600 select-none line-clamp-4 group-hover:line-clamp-none text-sm">
+          <p
+            className={clsx({
+              "text-neutral-600 select-none line-clamp-4 text-sm hover:line-clamp-none":
+                true,
+              "line-clamp-none": expanded,
+            })}
+          >
             {description}
           </p>
         )}

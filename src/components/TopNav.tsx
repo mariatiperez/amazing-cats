@@ -5,9 +5,9 @@ export default function TopNav() {
     <nav className="flex items-center justify-between flex-wrap bg-green-700 p-3 fixed top-0 left-0 right-0 z-10">
       <div className="flex items-center  text-white select-none">
         <span className="material-icons mr-2">pets</span>
-        <span className="font-semibold text-xl tracking-tight">
+        <Link href="/" className="font-semibold text-xl tracking-tight">
           Amazing Cats
-        </span>
+        </Link>
       </div>
       <div className="flex items-center">
         <Link
