@@ -27,7 +27,7 @@ export default function BreedCard({
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [expanded, setExpanded]);
 
   return (
     <div className="w-full rounded overflow-hidden shadow drop-shadow h-[400px] relative select-none">
