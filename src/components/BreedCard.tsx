@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export default function BreedCard({
+  id,
   name,
   description,
   image,
@@ -31,7 +32,10 @@ export default function BreedCard({
   return (
     <div className="w-full rounded overflow-hidden shadow drop-shadow h-[400px] relative select-none">
       <Link
-        href="#!"
+        href={{
+          pathname: "/[breedId]",
+          query: { breedId: id },
+        }}
         className="h-72 block relative w-full z-0"
         title={`Go to ${name} gallery`}
       >

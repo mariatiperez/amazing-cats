@@ -11,7 +11,7 @@ export default function TopNav() {
       </div>
       <div className="flex items-center">
         <Link
-          href="#!"
+          href="/favorites"
           className="material-icons text-white"
           title="Go to Favorites"
         >
