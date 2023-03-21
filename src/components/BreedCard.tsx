@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Breed } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function BreedCard({
   id,
@@ -12,22 +12,9 @@ export default function BreedCard({
   priority = false,
 }: Breed) {
   const [isLoading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState(false);
 
   const ref = useRef(null as HTMLDivElement | null);
   const loaded = useRef(false);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!expanded && !ref?.current?.contains(event.target as Node)) {
-        setExpanded(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, [expanded, setExpanded]);
 
   return (
     <div className="w-full rounded overflow-hidden shadow drop-shadow h-[400px] relative select-none">
@@ -65,17 +52,14 @@ export default function BreedCard({
             true,
           "transition-[max-height] ease-in-out duration-300 hover:h-fit hover:max-h-full":
             description,
-          "h-fit max-h-full": expanded && description,
         })}
-        onClick={() => setExpanded(!expanded)}
       >
         <h3 className="font-bold text-base">{name}</h3>
         {description && (
           <p
             className={clsx({
-              "text-neutral-600 select-none line-clamp-4 text-sm hover:line-clamp-none":
+              "text-neutral-600 select-none line-clamp-4 text-sm group-hover:line-clamp-none":
                 true,
-              "line-clamp-none": expanded,
             })}
           >
             {description}
