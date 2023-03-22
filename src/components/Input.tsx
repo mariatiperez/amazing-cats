@@ -22,10 +22,10 @@ export default function Input({
           id={id}
           placeholder={placeholder}
           type={type}
-          onChange={(e) => onChange(e.target.value)}
           value={value}
           autoComplete="off"
           className="appearance-none border rounded py-2 pl-8 border-slate-300 focus:border-slate-400 outline-none w-full"
+          onChange={(e) => onChange(e.target.value)}
         />
         {value && (
           <IconButton

@@ -1,18 +1,12 @@
-// Components
 import SEO from "@/components/SEO";
 import TopNav from "@/components/TopNav";
 import BreedCard from "@/components/BreedCard";
 import Input from "@/components/Input";
 import NoResults from "@/components/NoResults";
-
-// Functions
 import { getBreeds } from "@/api";
 import { useState } from "react";
-
-// Types
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Breed } from "@/types";
-import { ChangeEventHandler } from "react";
 
 export const getStaticProps: GetStaticProps<{ breeds: Breed[] }> = async () => {
   const breeds = await getBreeds();
@@ -55,7 +49,7 @@ export default function Home({
             onChange={handleSearch}
           />
         </div>
-        {breeds.length ? (
+        {breeds?.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center">
             {breeds.map((breed, index) => (
               <BreedCard

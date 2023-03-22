@@ -13,7 +13,7 @@ export default function BreedCard({
 }: Breed) {
   const [isLoading, setLoading] = useState(true);
 
-  const ref = useRef(null as HTMLDivElement | null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const loaded = useRef(false);
 
   return (
@@ -47,21 +47,17 @@ export default function BreedCard({
       </Link>
       <div
         ref={ref}
-        className={clsx({
-          "p-4 bg-white absolute bottom-0 h-36 min-h-[9rem] max-h-36 group":
-            true,
-          "transition-[max-height] ease-in-out duration-300 hover:h-fit hover:max-h-full":
-            description,
-        })}
+        className={clsx(
+          "p-4 bg-white absolute bottom-0 h-36 min-h-[9rem] max-h-36 group",
+          {
+            "transition-[max-height] ease-in-out duration-300 hover:h-fit hover:max-h-full":
+              description,
+          }
+        )}
       >
         <h3 className="font-bold text-base">{name}</h3>
         {description && (
-          <p
-            className={clsx({
-              "text-neutral-600 select-none line-clamp-4 text-sm group-hover:line-clamp-none":
-                true,
-            })}
-          >
+          <p className="text-neutral-600 select-none line-clamp-4 text-sm group-hover:line-clamp-none">
             {description}
           </p>
         )}

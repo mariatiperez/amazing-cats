@@ -19,7 +19,7 @@ export interface IconButtonProps {
 
 // Data interfaces
 
-export interface Weight {
+export interface BreedWeight {
   imperial: string;
   metric: string;
 }
@@ -39,7 +39,7 @@ export interface Breed {
   description?: string;
   life_span?: string;
   origin?: string;
-  weight?: Weight;
+  weight?: BreedWeight;
   temperament?: string;
   alt_names?: string;
   affection_level?: number;
