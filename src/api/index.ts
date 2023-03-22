@@ -1,4 +1,5 @@
-import { Breed } from "@/types";
+import { Breed, BreedSchema } from "@/types";
+import { z } from "zod";
 
 const API = "https://api.thecatapi.com/v1";
 const API_KEY = process.env.REACT_APP_API_KEY ?? "";
@@ -14,7 +15,7 @@ export const getBreeds = async (): Promise<Breed[]> => {
       },
     })
       .then((response) => response.json())
-      .then((data) => data);
+      .then((data) => z.array(BreedSchema).parse(data));
   } catch (e) {
     return <Breed[]>[];
   }

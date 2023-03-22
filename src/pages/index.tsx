@@ -62,7 +62,7 @@ export default function Home({
             ))}
           </div>
         ) : (
-          <NoResults />
+          <NoResults userSearch={!!search} />
         )}
       </main>
     </>
