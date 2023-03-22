@@ -1,11 +1,12 @@
+import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { useState } from "react";
 import SEO from "@/components/SEO";
 import TopNav from "@/components/TopNav";
 import BreedCard from "@/components/BreedCard";
 import Input from "@/components/Input";
 import NoResults from "@/components/NoResults";
+import PageTitle from "@/components/PageTitle";
 import { getBreeds } from "@/api";
-import { useState } from "react";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { Breed } from "@/types";
 
 export const getStaticProps: GetStaticProps<{ breeds: Breed[] }> = async () => {
@@ -39,9 +40,7 @@ export default function Home({
       <TopNav />
       <main className="mx-10 my-20">
         <div className="flex flex-col md:flex-row justify-between">
-          <h1 className="text-green-700 font-bold text-3xl mb-6">
-            List of Breeds
-          </h1>
+          <PageTitle title="List of Breeds" />
           <Input
             id="search"
             label="Search by name"

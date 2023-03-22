@@ -48,16 +48,16 @@ export default function BreedCard({
       <div
         ref={ref}
         className={clsx(
-          "p-4 bg-white absolute bottom-0 h-36 min-h-[9rem] max-h-36 group",
+          "p-4 bg-white dark:bg-neutral-600 absolute bottom-0 h-36 min-h-[9rem] max-h-36 group",
           {
             "transition-[max-height] ease-in-out duration-300 hover:h-fit hover:max-h-full":
               description,
           }
         )}
       >
-        <h3 className="font-bold text-base">{name}</h3>
+        <h3 className="font-bold">{name}</h3>
         {description && (
-          <p className="text-neutral-600 select-none line-clamp-4 text-sm group-hover:line-clamp-none">
+          <p className="text-neutral-600 dark:text-neutral-50 select-none line-clamp-4 text-sm group-hover:line-clamp-none">
             {description}
           </p>
         )}

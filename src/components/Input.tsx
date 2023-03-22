@@ -14,7 +14,7 @@ export default function Input({
       <label className="hidden" htmlFor={id}>
         {label}
       </label>
-      <div className="relative flex flex-row text-neutral-600 w-full md:w-96 mb-6">
+      <div className="relative flex flex-row text-neutral-600 dark:text-neutral-50 w-full md:w-96 mb-6">
         <span className="material-icons absolute top-1/2 transform -translate-y-1/2 ml-2">
           search
         </span>
