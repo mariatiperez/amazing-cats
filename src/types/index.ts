@@ -71,3 +71,4 @@ export const BreedSchema = z.object({
 });
 
 export type Breed = z.infer<typeof BreedSchema>;
+export type BreedImage = z.infer<typeof BreedImageSchema>;

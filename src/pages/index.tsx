@@ -1,4 +1,3 @@
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import TopNav from "@/components/TopNav";
@@ -6,18 +5,18 @@ import BreedCard from "@/components/BreedCard";
 import Input from "@/components/Input";
 import NoResults from "@/components/NoResults";
 import PageTitle from "@/components/PageTitle";
-import { getBreeds } from "@/api";
-import { Breed } from "@/types";
+import { AppState, wrapper } from "@/store/store";
+import { loadBreeds } from "@/store/breedsReducer";
+import { useAppSelector } from "@/store/hooks";
 
-export const getStaticProps: GetStaticProps<{ breeds: Breed[] }> = async () => {
-  const breeds = await getBreeds();
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  await store.dispatch(loadBreeds());
+  return { props: {} };
+});
 
-  return { props: { breeds } };
-};
+export default function Home() {
+  const allBreeds = useAppSelector((state: AppState) => state.breeds);
 
-export default function Home({
-  breeds: allBreeds,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [search, setSearch] = useState("");
   const [breeds, setBreeds] = useState(allBreeds);
 
@@ -27,7 +26,7 @@ export default function Home({
       setBreeds(
         allBreeds.filter(
           (breed) =>
-            breed.name.toLowerCase().includes(value) ||
+            breed.name?.toLowerCase().includes(value) ||
             breed.alt_names?.toLowerCase().includes(value)
         )
       );
