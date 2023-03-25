@@ -7,7 +7,7 @@ export default function NoResults({ userSearch = true }) {
         Oh no!{" "}
         {userSearch
           ? "We couldn't find what you're looking for :("
-          : "We don't have any breeds to show :("}
+          : "We don't have anything to show :("}
         <br />
         Don&apos;t worry, here&apos;s a cute cat!
       </p>

@@ -2,12 +2,14 @@ import { IconButtonProps } from "@/types";
 
 export default function IconButton({
   name,
-  className,
+  title = "",
+  className = "",
   onClick,
 }: IconButtonProps) {
   return (
     <button
-      className={`material-icons rounded-full ${className}`}
+      className={`material-icons rounded-full cursor-pointer ${className}`}
+      title={title}
       onClick={onClick}
     >
       {name}
