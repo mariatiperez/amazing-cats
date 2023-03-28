@@ -14,7 +14,7 @@ interface InitialState {
   favorites: Favorite[];
 }
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
   breeds: [],
   images: {},
   favorites: [],

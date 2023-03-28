@@ -58,7 +58,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
         {breeds?.length ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center">
-            {breeds.map((breed, index) => (
+            {breeds.map((breed) => (
               <Card
                 key={breed.id}
                 id={breed.id}
