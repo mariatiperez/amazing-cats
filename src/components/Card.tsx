@@ -20,7 +20,9 @@ export default function Card({
   description = "",
 }: CardProps) {
   const dispatch = useAppDispatch();
-  const favorite = typeof id === "string" && useAppSelector(selectFavorite(id));
+  const favorite = useAppSelector(
+    selectFavorite(typeof id === "string" ? id : "")
+  );
 
   const [isLoading, setLoading] = useState(true);
 

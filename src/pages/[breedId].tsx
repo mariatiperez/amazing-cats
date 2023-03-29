@@ -32,7 +32,7 @@ const BreedGallery: NextPage = () => {
       ]).then(() => setLoading(false));
 
     load();
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <>
