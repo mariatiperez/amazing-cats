@@ -17,12 +17,16 @@ const OPTIONS = {
   },
 };
 
+export const BREEDS_URL = `${API}/breeds` as const;
+export const IMAGES_SEARCH_URL = `${API}/images/search` as const;
+export const FAVORITES_URL = `${API}/favourites` as const;
+
 /**
  * @description Get breeds list
  */
 export const getBreeds = async (): Promise<Breed[]> => {
   try {
-    return fetch(`${API}/breeds`, OPTIONS)
+    return fetch(BREEDS_URL, OPTIONS)
       .then((response) => response.json())
       .then((data) => z.array(BreedSchema).parse(data));
   } catch (e) {
@@ -39,7 +43,7 @@ export const getBreedImages = async (
 ): Promise<BreedImage[]> => {
   try {
     return fetch(
-      `${API}/images/search?breed_ids=${breedId}&limit=${limit}`,
+      `${IMAGES_SEARCH_URL}?breed_ids=${breedId}&limit=${limit}`,
       OPTIONS
     )
       .then((response) => response.json())
@@ -54,7 +58,7 @@ export const getBreedImages = async (
  */
 export const getFavorites = async (limit = 20): Promise<Favorite[]> => {
   try {
-    return fetch(`${API}/favourites?limit=${limit}`, OPTIONS)
+    return fetch(`${FAVORITES_URL}?limit=${limit}`, OPTIONS)
       .then((response) => response.json())
       .then((data) => z.array(FavoriteSchema).parse(data));
   } catch (e) {
@@ -73,7 +77,7 @@ export const postFavorite = async (
     image_id: imageId,
   });
   try {
-    return fetch(`${API}/favourites`, {
+    return fetch(FAVORITES_URL, {
       ...OPTIONS,
       method: "POST",
       body,
@@ -96,7 +100,7 @@ export const deleteFavorite = async (
   favoriteId: number
 ): Promise<{ ok: boolean }> => {
   try {
-    return fetch(`${API}/favourites/${favoriteId}`, {
+    return fetch(`${FAVORITES_URL}/${favoriteId}`, {
       ...OPTIONS,
       method: "DELETE",
     }).then((response) => ({ ok: response.ok }));

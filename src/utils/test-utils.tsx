@@ -7,10 +7,12 @@ import { AppStore, AppState, setupStore } from "../store/store";
 import { initialState } from "../store/breedsReducer";
 import { NextRouter } from "next/router";
 import { RouterContext } from "next/dist/shared/lib/router-context";
+import userEvent from "@testing-library/user-event";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<AppState>;
   store?: AppStore;
+  router?: Partial<NextRouter>;
 }
 
 export function renderWithProviders(
@@ -18,18 +20,23 @@ export function renderWithProviders(
   {
     preloadedState = initialState,
     store = setupStore(),
+    router = {},
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
     return (
-      <RouterContext.Provider value={createMockRouter({})}>
+      <RouterContext.Provider value={createMockRouter(router)}>
         <Provider store={store}>{children}</Provider>
       </RouterContext.Provider>
     );
   }
 
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+  return {
+    store,
+    user: userEvent.setup(),
+    ...render(ui, { wrapper: Wrapper, ...renderOptions }),
+  };
 }
 
 export function createMockRouter(router: Partial<NextRouter>): NextRouter {

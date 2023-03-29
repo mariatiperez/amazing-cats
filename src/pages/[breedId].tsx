@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import SimpleLoader from "@/components/SimpleLoader";
 
 const BreedGallery: NextPage = () => {
-  const id = useRouter().query.breedId as string;
+  const id = (useRouter().query.breedId as string) ?? "";
   const images = useAppSelector(selectBreedImages(id));
   const { name = "" } = useAppSelector(selectBreed(id)) ?? {};
   const dispatch = useAppDispatch();
@@ -25,8 +25,13 @@ const BreedGallery: NextPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    dispatch(loadBreedImages(id));
-    dispatch(loadFavorites()).then(() => setLoading(false));
+    const load = async () =>
+      await Promise.all([
+        dispatch(loadBreedImages(id)),
+        dispatch(loadFavorites()),
+      ]).then(() => setLoading(false));
+
+    load();
   }, [id]);
 
   return (
@@ -38,7 +43,10 @@ const BreedGallery: NextPage = () => {
         {isLoading ? (
           <SimpleLoader />
         ) : images?.length ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center">
+          <div
+            data-testid="images-container"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center"
+          >
             {images.map((image) => (
               <Card
                 key={image.id}
