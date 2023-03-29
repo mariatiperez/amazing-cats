@@ -85,17 +85,27 @@ export default function Card({
               </h3>
             )}
             {!description && (
-              <IconButton name="favorite" onClick={toggleFavorite} />
+              <IconButton
+                dataTestId="favorite-button"
+                name={favorite ? "favorite" : "favorite_border"}
+                className="text-red-500"
+                title={favorite ? "Remove from Favorites" : "Add to Favorites"}
+                onClick={toggleFavorite}
+              />
             )}
           </div>
           {description && (
-            <p className="text-neutral-600 dark:text-neutral-50 select-none line-clamp-4 text-sm group-hover:line-clamp-none">
+            <p
+              data-testid="breed-description"
+              className="text-neutral-600 dark:text-neutral-50 select-none line-clamp-4 text-sm group-hover:line-clamp-none"
+            >
               {description}
             </p>
           )}
         </div>
       ) : (
         <IconButton
+          dataTestId="favorite-button"
           name={favorite ? "favorite" : "favorite_border"}
           className="absolute bottom-0 right-0 m-4 p-1 text-red-500"
           title={favorite ? "Remove from Favorites" : "Add to Favorites"}

@@ -24,7 +24,7 @@ export const handlers = [
     return res(ctx.json({ id: 1234 }), ctx.status(200));
   }),
   // deleteFavorites
-  rest.delete(FAVORITES_URL, (req, res, ctx) => {
+  rest.delete(`${FAVORITES_URL}/*`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
 ];
