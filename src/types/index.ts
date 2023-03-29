@@ -16,6 +16,7 @@ export interface IconButtonProps {
   name: string;
   className?: string;
   title?: string;
+  dataTestId?: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 

@@ -34,6 +34,7 @@ export default function Card({
 
   return (
     <div
+      data-testid="card"
       className={clsx(
         "w-full rounded overflow-hidden shadow drop-shadow relative select-none h-64",
         { "h-96": description }
@@ -78,7 +79,11 @@ export default function Card({
           )}
         >
           <div className="flex flex-row justify-between">
-            {name && <h3 className="font-bold">{name}</h3>}
+            {name && (
+              <h3 data-testid="breed-name" className="font-bold">
+                {name}
+              </h3>
+            )}
             {!description && (
               <IconButton name="favorite" onClick={toggleFavorite} />
             )}
