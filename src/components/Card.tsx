@@ -85,12 +85,9 @@ export default function Card({
               </h3>
             )}
             {!description && (
-              <IconButton
-                dataTestId="favorite-button"
-                name={favorite ? "favorite" : "favorite_border"}
-                className="text-red-500"
-                title={favorite ? "Remove from Favorites" : "Add to Favorites"}
-                onClick={toggleFavorite}
+              <FavoriteButton
+                favorite={!!favorite}
+                toggleFavorite={toggleFavorite}
               />
             )}
           </div>
@@ -104,14 +101,32 @@ export default function Card({
           )}
         </div>
       ) : (
-        <IconButton
-          dataTestId="favorite-button"
-          name={favorite ? "favorite" : "favorite_border"}
-          className="absolute bottom-0 right-0 m-4 p-1 text-red-500"
-          title={favorite ? "Remove from Favorites" : "Add to Favorites"}
-          onClick={toggleFavorite}
+        <FavoriteButton
+          className="absolute bottom-0 right-0 m-4 p-1"
+          favorite={!!favorite}
+          toggleFavorite={toggleFavorite}
         />
       )}
     </div>
+  );
+}
+
+function FavoriteButton({
+  className,
+  favorite,
+  toggleFavorite,
+}: {
+  className?: string;
+  favorite?: boolean;
+  toggleFavorite: () => void;
+}) {
+  return (
+    <IconButton
+      dataTestId="favorite-button"
+      name={favorite ? "favorite" : "favorite_border"}
+      className={clsx("text-red-500", className)}
+      title={favorite ? "Remove from Favorites" : "Add to Favorites"}
+      onClick={toggleFavorite}
+    />
   );
 }
