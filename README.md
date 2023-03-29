@@ -6,9 +6,9 @@ Cats catalog made with React, Next.js, TailwindCSS and Redux. Now live [here!](h
 
 ## Functional Requirements
 
-- [] [Page 1: List of Breeds](https://github.com/mariatiperez/amazing-cats/issues/1)
-- [] [Page 2: Breed Gallery](https://github.com/mariatiperez/amazing-cats/issues/2)
-- [] [Page 3: Favorites](https://github.com/mariatiperez/amazing-cats/issues/3)
+- [x] [Page 1: List of Breeds](https://github.com/mariatiperez/amazing-cats/issues/1)
+- [x] [Page 2: Breed Gallery](https://github.com/mariatiperez/amazing-cats/issues/2)
+- [ ] [Page 3: Favorites](https://github.com/mariatiperez/amazing-cats/issues/3)
 
 ## Project Setup
 
@@ -30,36 +30,57 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ```sh
 amazing-cats/
-|   package.json
-|   README.md
-
+│   package.json
+│   README.md
+│   next.config.js
+│   jest.config.js
+│   jest.setup.js
+│   tailwind.config.js
+│
 ├───src
-|   ├───api
-|   |   index.ts
-|   |
-|   ├───components
-|   |   BreedCard.tsx
-|   |   IconButton.tsx
-|   |   Input.tsx
-|   |   NoResults.tsx
-|   |   PageTitle.tsx
-|   |   SEO.tsx
-|   |   TopNav.tsx
-|   |
-|   ├───pages
-|   |   favorites.tsx
-|   |   index.tsx
-|   |   [breedId].tsx
-|   |   _app.tsx
-|   |   _document.tsx
-|   |
-|   ├───styles
-|   |   globals.css
-|   |   Home.module.css
-|   |
-|   ├───types
-|   |   index.ts
-|
-├───__tests__
-|   index.test.tsx
+│   ├───__tests__
+│   │   ├───components
+│   │   │   Card.test.tsx
+│   │   ├───pages
+│   │   │   [breedId].test.tsx
+│   │   │   index.test.ts
+│   │
+│   ├───api
+│   │   index.ts
+│   │
+│   ├───components
+│   │   Card.tsx
+│   │   IconButton.tsx
+│   │   Input.tsx
+│   │   NoResults.tsx
+│   │   PageTitle.tsx
+│   │   SEO.tsx
+│   │   SimpleLoader.tsx
+│   │   TopNav.tsx
+│   │
+│   ├───mocks
+│   │   data.json
+│   │   handlers.ts
+│   │   server.ts
+│   │
+│   ├───pages
+│   │   _app.tsx
+│   │   _document.tsx
+│   │   [breedId].tsx
+│   │   favorites.tsx
+│   │   index.tsx
+│   │
+│   ├───store
+│   │   breedsReducer.ts
+│   │   hooks.ts
+│   │   store.ts
+│   │
+│   ├───styles
+│   │   globals.css
+│   │
+│   ├───types
+│   │   index.ts
+│   │
+│   ├───utils
+│   │   test-utils.tsx
 ```
