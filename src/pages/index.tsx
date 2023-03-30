@@ -71,7 +71,9 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             ))}
           </GridContainer>
         ) : (
-          <NoResults userSearch={!!search} />
+          <NoResults>
+            {!!search && "We couldn't find what you're looking for :("}
+          </NoResults>
         )}
       </main>
     </>
