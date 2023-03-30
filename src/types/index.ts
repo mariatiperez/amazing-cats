@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { Attributes, MouseEventHandler } from "react";
 import { z } from "zod";
 
 // Component Props
@@ -15,7 +15,18 @@ export interface InputProps {
 export interface IconButtonProps {
   name: string;
   className?: string;
+  title?: string;
+  dataTestId?: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface CardProps {
+  id: Attributes["key"];
+  breedId?: Breed["id"];
+  imageId?: BreedImage["id"];
+  name?: string;
+  description?: string;
+  image?: BreedImage;
 }
 
 // Data interfaces
@@ -28,16 +39,15 @@ export const BreedWeightSchema = z.object({
 export const BreedImageSchema = z.object({
   id: z.string(),
   url: z.string(),
-  width: z.number(),
-  height: z.number(),
+  width: z.number().optional(),
+  height: z.number().optional(),
 });
 
 export const BreedSchema = z.object({
   id: z.string(),
   name: z.string(),
   image: BreedImageSchema.optional(),
-  priority: z.boolean().optional(),
-  description: z.string().optional(),
+  description: z.string(),
   life_span: z.string().optional(),
   origin: z.string().optional(),
   weight: BreedWeightSchema.optional(),
@@ -70,4 +80,13 @@ export const BreedSchema = z.object({
   reference_image_id: z.string().optional(),
 });
 
+export const FavoriteSchema = z.object({
+  id: z.number(),
+  image_id: z.string(),
+  created_at: z.string().optional(),
+  image: BreedImageSchema,
+});
+
 export type Breed = z.infer<typeof BreedSchema>;
+export type BreedImage = z.infer<typeof BreedImageSchema>;
+export type Favorite = z.infer<typeof FavoriteSchema>;

@@ -20,6 +20,7 @@ export default function Input({
         </span>
         <input
           id={id}
+          data-testid="search-input"
           placeholder={placeholder}
           type={type}
           value={value}
@@ -30,6 +31,7 @@ export default function Input({
         {value && (
           <IconButton
             name="close"
+            dataTestId="clear-search-button"
             className="absolute top-1/2 transform -translate-y-1/2 ml-1 right-0 text-sm mr-1"
             onClick={() => onChange("")}
           />
