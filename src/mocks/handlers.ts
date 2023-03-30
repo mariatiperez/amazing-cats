@@ -17,7 +17,10 @@ export const handlers = [
   }),
   // getFavorites
   rest.get(FAVORITES_URL, (req, res, ctx) => {
-    return res(ctx.json(favorites), ctx.status(200));
+    return res(
+      ctx.json(req.url.searchParams.get("limit") !== "0" ? favorites : []),
+      ctx.status(200)
+    );
   }),
   // postFavorites
   rest.post(FAVORITES_URL, (req, res, ctx) => {

@@ -20,9 +20,7 @@ export default function Card({
   description = "",
 }: CardProps) {
   const dispatch = useAppDispatch();
-  const favorite = useAppSelector(
-    selectFavorite(typeof id === "string" ? id : "")
-  );
+  const favorite = useAppSelector(selectFavorite(id ?? ""));
 
   const [isLoading, setLoading] = useState(true);
 
@@ -80,19 +78,11 @@ export default function Card({
             }
           )}
         >
-          <div className="flex flex-row justify-between">
-            {name && (
-              <h3 data-testid="breed-name" className="font-bold">
-                {name}
-              </h3>
-            )}
-            {!description && (
-              <FavoriteButton
-                favorite={!!favorite}
-                toggleFavorite={toggleFavorite}
-              />
-            )}
-          </div>
+          {name && (
+            <h3 data-testid="breed-name" className="font-bold">
+              {name}
+            </h3>
+          )}
           {description && (
             <p
               data-testid="breed-description"

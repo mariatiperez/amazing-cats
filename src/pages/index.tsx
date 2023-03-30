@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { Breed } from "@/types";
 import { InferGetStaticPropsType, NextPage, GetStaticProps } from "next";
 import { getBreeds } from "@/api";
+import GridContainer from "@/components/GridContainer";
 
 export const getStaticProps: GetStaticProps<{ breeds: Breed[] }> = async () => {
   const breeds = await getBreeds();
@@ -57,10 +58,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           />
         </div>
         {breeds?.length ? (
-          <div
-            data-testid="images-container"
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-8 gap-y-8 lg:gap-y-12 justify-items-center"
-          >
+          <GridContainer>
             {breeds.map((breed) => (
               <Card
                 key={breed.id}
@@ -71,9 +69,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 image={breed.image}
               />
             ))}
-          </div>
+          </GridContainer>
         ) : (
-          <NoResults userSearch={!!search} />
+          <NoResults>
+            {!!search && "We couldn't find what you're looking for :("}
+          </NoResults>
         )}
       </main>
     </>
