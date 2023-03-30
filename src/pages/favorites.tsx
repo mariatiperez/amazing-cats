@@ -9,14 +9,14 @@ import { loadFavorites, selectFavorites } from "@/store/breedsReducer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect, useState } from "react";
 
-export default function Favorites() {
+export default function Favorites({ limit = 20 }) {
   const dispatch = useAppDispatch();
   const [isLoading, setLoading] = useState(true);
   const favorites = useAppSelector(selectFavorites());
 
   useEffect(() => {
     setLoading(true);
-    dispatch(loadFavorites()).then(() => setLoading(false));
+    dispatch(loadFavorites(limit)).then(() => setLoading(false));
   }, [dispatch]);
 
   return (

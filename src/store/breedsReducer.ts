@@ -55,8 +55,8 @@ export const loadBreedImages = createAsyncThunk(
  */
 export const loadFavorites = createAsyncThunk(
   "breeds/loadFavorites",
-  async () => {
-    return { favorites: await getFavorites() };
+  async (limit: number = 20) => {
+    return { favorites: await getFavorites(limit) };
   }
 );
 
