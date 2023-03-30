@@ -30,8 +30,14 @@ export const selectImage =
   (imageId: string, breedId: string) => (state: AppState) =>
     state.images[breedId]?.find(({ id }) => id === imageId);
 
-export const selectFavorite = (id: string) => (state: AppState) =>
-  state.favorites.find(({ image_id: imageId }) => imageId === id);
+export const selectFavorite =
+  (id: Favorite["id"] | Breed["id"]) => (state: AppState) =>
+    state.favorites.find(
+      ({ image_id: imageId, id: favoriteId }) =>
+        favoriteId === id || imageId === id
+    );
+
+export const selectFavorites = () => (state: AppState) => state.favorites;
 
 /**
  * @description Load images by breed

@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function NoResults({ userSearch = true }) {
+export default function NoResults({ userSearch = false }) {
   return (
     <article
       data-testid="no-results"
       className="flex flex-col items-center text-lg"
     >
       <p className="text-center w-full">
-        Oh no!{" "}
+        {"Oh no! "}
         {userSearch
           ? "We couldn't find what you're looking for :("
           : "We don't have anything to show :("}
