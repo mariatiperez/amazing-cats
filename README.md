@@ -1,14 +1,12 @@
 # Amazing Cats
 
-⚠️ **WORK IN PROGRESS** 🚧
-
 Cats catalog made with React, Next.js, TailwindCSS and Redux. Now live [here!](https://amazing-cats.netlify.app/)
 
 ## Functional Requirements
 
 - [x] [Page 1: List of Breeds](https://github.com/mariatiperez/amazing-cats/issues/1)
 - [x] [Page 2: Breed Gallery](https://github.com/mariatiperez/amazing-cats/issues/2)
-- [ ] [Page 3: Favorites](https://github.com/mariatiperez/amazing-cats/issues/3)
+- [x] [Page 3: Favorites](https://github.com/mariatiperez/amazing-cats/issues/3)
 
 ## Project Setup
 
